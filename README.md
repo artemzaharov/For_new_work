@@ -1,11 +1,20 @@
 # For_new_work
+</br>
 git clone https://github.com/artemzaharov/For_new_work.git
+</br>
 cd For_new_work/
+</br>
 sudo docker-compose up
-#if you see error message about versions, open docker-compose.yml and change first line from version: '3.8' to version: '3.7'
+</br>
+If you see error message about versions, open docker-compose.yml and change first line from version: '3.8' to version: '3.7'
+</br>
 sudo docker-compose up
-#To create new user for adding news from admin
+</br>
+To create new user for adding news from admin
+</br>
 docker ps
+</br>
 docker exec -it <CONTAINER> bash
+</br>
 python3 manage.py createsuperuser
 
