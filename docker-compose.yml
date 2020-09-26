@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  django:
+    build:
+      context: ./twi
+      dockerfile: Dockerfile
+      target: develop-target
+    restart: always
+    depends_on:
+      - postgres
+    volumes:
+      - ./twi:/usr/src/app:delegated
+    environment:
+      - DJANGO_DEBUG=True
+      - DJANGO_ALLOWED_HOSTS=*,
+      - DJANGO_DEFAULT_DATABASE=psql://develop:develop@postgres:5432/develop
+    links:
+      - postgres
+    ports:
+      - 8000:8000
+    entrypoint: ["sh", "./entrypoint.sh"]
+    command: python manage.py runserver 0.0.0.0:8000
+
+  scrape:
+    build:
+      context: ./twi
+      dockerfile: Dockerfile
+      target: develop-target
+    restart: on-failure
+    depends_on:
+      - django
+      - postgres
+    environment:
+      - DJANGO_DEBUG=True
+      - DJANGO_ALLOWED_HOSTS=*,
+      - DJANGO_DEFAULT_DATABASE=psql://develop:develop@postgres:5432/develop
+    command: python manage.py scrape
+
+  postgres:
+    image: library/postgres:12.3
+    volumes:
+      - ./.docker/postgres/data:/var/lib/postgresql/data:delegated
+    environment:
+      - POSTGRES_USER=develop
+      - POSTGRES_PASSWORD=develop
+      - POSTGRES_DB=develop

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML> {% load static %}
+<!--
+	Highlights by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>NewsApp</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+</head>
+
+<body class="is-preload">
+
+    <!-- Header -->
+
+    <h1>NEWSAPP</h1>
+
+    <section id="four" class="main">
+        <div class="container">
+            <div class="content">
+                <header class="major">
+                    <h2>News</h2>
+                </header>
+                <section>
+                    <h4>Search</h4>
+                    <form method="get" action="{% url 'news_list' %}">
+
+                        <div class="row gtr-uniform">
+                            <div class="col-12 col-12-xsmall">
+                                <input type="text" name="search" value="" placeholder="enter something" />
+                            </div>
+                            <div class="col-12">
+                                <ul class="actions">
+                                    <li><input type="submit" value="Find article" class="primary" /></li>
+                                    <li><input type="reset" value="Reset" /></li>
+                                    <li> <a href="/" class="button">All News</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                    <hr />
+                </section>
+
+               
+                <section>
+                       <ul class="actions fit small">
+                    <form method="get" action="{% url 'sort_list' %} ">
+                        <input name="sort" type="hidden" value="newsort">
+                      <li>  <button type='submit'> Old First</button></li>
+                    </form>
+                    <form method="get" action="{% url 'sort_list' %} ">
+                        <input name="sort" type="hidden" value="">
+                      <li>  <button type='submit'> New First</button></li>
+                    </form>
+                     </ul>
+                </section>
+
+                {% comment %}
+                <form method="get" action="{% url 'sort_list' %}">
+
+                    <div class="row gtr-uniform">
+                        <div class="col-12 col-12-xsmall">
+                            <input type="text" name="sort" value="" placeholder="enter something" />
+                        </div>
+                        <div class="col-12">
+                            <ul class="actions">
+                                <li><input type="submit" value="Find article" class="primary" /></li>
+                                <li><input type="reset" value="Reset" /></li>
+                                <li> <a href="/" class="button">All News</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </form> {% endcomment %}
+
+
+                {% for article in articles %}
+                <section>
+                    <header>
+                        <h4>{{ article.title }}</h4>
+                        <p><b>{{ article.author }}</b>, {{ article.date_pub }} </p>
+                    </header>
+                    <p>{{ article.description }}</p>
+                    <header>
+                        <hr />
+                </section>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <section id="footer">
+        <footer>
+            <ul class="copyright">
+                <li>Design: <a href="http://html5up.net">ArtemZaharov</a></li>
+            </ul>
+        </footer>
+    </section>
+
+
+    <!-- Scripts -->
+
+    <script src="{% static 'js/jquery.min.js' %} "></script>
+    <script src="{% static 'js/jquery.scrollex.min.js' %}"></script>
+    <script src=" {% static 'js/jquery.scrolly.min.js' %} "></script>
+    <script src=" {% static 'js/browser.min.js' %} "></script>
+    <script src=" {% static 'js/breakpoints.min.js' %} "></script>
+    <script src="{% static 'js/util.js' %} "></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+</body>
+
+</html>
