@@ -35,7 +35,7 @@ class Command(BaseCommand):
             
             
 while True:
-
+    time.sleep(12)
     thread = threading.Thread(target=Command.handle, args=("handle", ))
     thread.start()
     time.sleep(500)
