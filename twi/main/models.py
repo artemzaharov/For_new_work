@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
-# Create your models here.
+
 
 class LatestArticlesManager:
 
@@ -32,7 +32,6 @@ class MyArticle(models.Model):
     author = models.CharField(max_length=300, verbose_name='Автор',)
     description = models.TextField(verbose_name='Описание', )
     date_pub = models.DateTimeField(auto_now_add=True)
-
 
     class Meta:
         verbose_name = ("MyArticle")

@@ -5,8 +5,8 @@ import time
 import threading
 from random import choice
 class Command(BaseCommand):
-    help = "collect articles"   
 
+    help = "collect articles"   
 
     def handle(self, *args, **options):
 
@@ -23,13 +23,13 @@ class Command(BaseCommand):
             author = response.get('author', 'Автор Неизвестен') 
             title = response.get('title', 'Заголовок отсутствует')
             description = response.get('description', 'Описание отсутствует')
+
             try:
                 ApiArticle.objects.create(
                     author=author,
                     title=title,
                     description=description)
                 print(f'added {title}')
-         
             except:
                 print(f'already exists {title}')
             
