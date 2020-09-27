@@ -18,7 +18,7 @@ sudo docker-compose up
 </br>
 docker ps
 </br>
-docker exec -it <CONTAINER> bash
+docker exec -it CONTAINER bash
 </br>
 python3 manage.py createsuperuser
 
