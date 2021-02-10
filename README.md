@@ -1,4 +1,4 @@
-# For_new_work
+# News site
 </br>
 git clone https://github.com/artemzaharov/For_new_work.git
 </br>
